@@ -1,0 +1,26 @@
+SpecialTokenDao has following features : 
+The main purpose of the provided smart contract, named "VotingDAO," in Solidity is to facilitate the creation, management, and voting 
+on proposals within a decentralized voting system, similar to the previous version. However, there is an important addition in this 
+contract: it allows users to vote using a specific ERC-20 token as collateral. This means that users must have a balance of the specified 
+ERC-20 token in order to participate in the voting process. Let's break down the main functionalities and purposes of this smart contract:
+
+ERC-20 Token Integration: This version of the contract interfaces with an ERC-20 token through the IERC20 interface. Users can 
+create proposals and vote on them by staking a specific ERC-20 token.
+
+Proposal Creation: Users can create new proposals by calling the createProposal function, providing a description of the proposal and 
+specifying the address of the ERC-20 token that will be used for voting.
+
+Voting with ERC-20 Tokens: Users can vote on proposals by calling the vote function. However, in addition to checking whether a user has 
+already voted, this version also checks if the user has a positive balance of the specified ERC-20 token. Users can only vote if they have tokens.
+
+Vote Counting: The countVotes function allows the proposer (the person who created the proposal) to count the votes for a specific proposal. 
+The proposal's result is determined based on the majority of "yes" or "no" votes.
+
+Proposal Information Retrieval: Users can retrieve information about a specific proposal using various getter functions, such as 
+getProposalVotes, getVoteStatus, getResult, and getProposalDetails. These functions allow users to query the voting results, the status of 
+individual votes, and the overall status of a proposal (open or closed).
+
+In summary, this smart contract extends the functionality of the previous version by integrating an ERC-20 token for voting. It provides a 
+more advanced and flexible way of conducting decentralized votes, where users must stake a specific token to participate in the 
+decision-making process. This can be useful in various decentralized governance scenarios, such as DAOs, where token holders use their 
+tokens to influence decisions within the organization.

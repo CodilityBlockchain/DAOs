@@ -1,0 +1,19 @@
+Function of the smart contract are defined as follows:
+Proposal Creation: Users can create new proposals by calling the createProposal function, providing a description of the proposal. 
+Each proposal is assigned a unique identifier.
+
+Voting: Users can vote on proposals by calling the vote function, specifying the proposal ID and their vote (in favor or against). 
+Each user can vote only once on a specific proposal.
+
+Vote Counting: The contract allows the proposer (the person who created the proposal) to call the countVotes function to count the 
+votes for a specific proposal. Once the vote counting is conducted, the proposal's result is determined based 
+on the majority of "yes" or "no" votes.
+
+Proposal Information Retrieval: Users can retrieve information about a specific proposal using various getter functions, such as 
+getProposalVotes, getVoteStatus, getResult, and getProposalDetails. These functions allow users to query the voting results, 
+the status of individual votes, and the overall status of a proposal (open or closed).
+
+
+In summary, this smart contract serves as a basic framework for a decentralized voting system, where members can create proposals, 
+vote on them, and have the results counted in a transparent and automated manner. It can be used by decentralized organizations, 
+communities, or groups that want to make collective decisions through a decentralized and trustless process.

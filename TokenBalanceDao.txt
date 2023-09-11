@@ -1,0 +1,22 @@
+The main purpose of the provided smart contract, named "Dao" (short for Decentralized Autonomous Organization), in Solidity is to create 
+and manage proposals within a decentralized voting system where users can vote using an ERC-20 token. This contract is designed to 
+facilitate the following functionalities:
+
+Proposal Creation: Users can create new proposals by calling the createProposal function, providing a description of the proposal. 
+In addition to the description, users must specify an ERC-20 token address that will be used for voting on the proposal. The contract 
+checks that the creator of the proposal has a balance of the specified token greater than zero.
+
+Voting with ERC-20 Tokens: Users can vote on proposals by calling the voteOnProposal function, specifying the proposal ID and their vote 
+(in favor or against the proposal). The contract checks whether the user has already voted on the proposal and whether they have a positive 
+balance of the specified ERC-20 token to participate in the vote.
+
+Vote Counting: The proposer of a proposal (the user who created it) can call the countVotes function to count the votes for a specific 
+proposal. The result of the vote is determined based on the balance of the ERC-20 token held by users who voted in favor or against the 
+proposal.
+
+Proposal Information Retrieval: Users can retrieve information about a specific proposal using the getproposal_detail function, which 
+returns details about the proposal, including the proposer, description, vote counts, and whether the proposal has passed.
+
+In summary, this smart contract serves as a basic framework for a decentralized voting system within a DAO. It allows users to 
+create proposals, vote on them using an ERC-20 token, and conduct vote counting to determine whether a proposal has passed or not. 
+The contract provides transparency and automation for decision-making within the decentralized organization.
