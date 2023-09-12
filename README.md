@@ -1,5 +1,7 @@
 npx hardhat compile
+
 npx hardhat run scripts/deploy.js --network
+
 npx hardhat test SimpleDao.js
 
 
