@@ -1,62 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.10;
 
-interface IERC20 {
-    function totalSupply() external view returns (uint256);
-
-    function decimals() external view returns (uint8);
-
-    function balanceOf(address account) external view returns (uint256);
-
-    function transfer(
-        address recipient,
-        uint256 amount
-    ) external returns (bool);
-
-    function allowance(
-        address owner,
-        address spender
-    ) external view returns (uint256);
-
-    function approve(address spender, uint256 amount) external returns (bool);
-
-    function transferFrom(
-        address sender,
-        address recipient,
-        uint256 amount
-    ) external returns (bool);
-
-    function permit(
-        address target,
-        address spender,
-        uint256 value,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external;
-
-    function transferWithPermit(
-        address target,
-        address to,
-        uint256 value,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external returns (bool);
-
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
-}
-
-contract VotingDAO {
+contract SimpleDao {
     struct Proposal {
-        IERC20 token;
         address proposalar;
         string description;
         uint256 yesVotes;
@@ -77,9 +23,7 @@ contract VotingDAO {
         admin = msg.sender;
     }
 
-    function createProposal(string memory description, address token) public {
-        IERC20 _token = IERC20(token);
-        proposals[proposalCount].token = _token;
+    function createProposal(string memory description) public {
         proposals[proposalCount].proposalar = msg.sender;
         proposals[proposalCount].description = description;
         proposals[proposalCount].open = true;
@@ -89,10 +33,6 @@ contract VotingDAO {
 
     function vote(uint256 proposalId, bool favour) public {
         require(voted[proposalId] != msg.sender, "Already voted");
-        require(
-            proposals[proposalCount].token.balanceOf(msg.sender) > 0,
-            "you cannot vote due to token error"
-        );
         if (favour = true) {
             proposals[proposalId].yesVotes++;
         } else {
@@ -145,16 +85,16 @@ contract VotingDAO {
     )
         public
         view
-        returns (IERC20, address, string memory, uint256, uint256, bool, bool)
+        returns (address, string memory, uint256, uint256, bool, bool, bool)
     {
         return (
-            proposals[proposalId].token,
             proposals[proposalId].proposalar,
             proposals[proposalId].description,
             proposals[proposalId].yesVotes,
             proposals[proposalId].noVotes,
             proposals[proposalId].open,
-            proposals[proposalId].countConducted
+            proposals[proposalId].countConducted,
+            proposals[proposalId].result
         );
     }
 }

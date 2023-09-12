@@ -54,7 +54,7 @@ interface IERC20 {
     );
 }
 
-contract Dao {
+contract TokenBalanceDao {
     address owner;
     uint256 proposalarCounter = 1;
 
